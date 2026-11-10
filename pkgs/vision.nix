@@ -10,7 +10,7 @@
   version,
   ggmlPin,
   pinChecked ? true,
-  cudaArch ? "89",
+  cudaArch ? "86",
 }:
 
 assert pinChecked;

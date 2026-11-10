@@ -56,12 +56,14 @@
           inherit version ggmlPin pinChecked;
           src = inputs.strata;
           llamaSrc = llama-pinned;
+          cudaPackages = pkgs.cudaPackages_13_4;
         };
 
         strata-vision = pkgs.callPackage ./pkgs/vision.nix {
           inherit version ggmlPin pinChecked;
           src = inputs.strata;
           llamaSrc = llama-pinned;
+          cudaPackages = pkgs.cudaPackages_13_4;
         };
 
         strata-serve = pkgs.callPackage ./pkgs/serve.nix {

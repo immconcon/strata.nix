@@ -10,7 +10,7 @@
   version,
   ggmlPin,
   pinChecked ? true,
-  cudaArch ? "89",
+  cudaArch ? "86",
 }:
 
 assert pinChecked;
@@ -44,7 +44,7 @@ cudaPackages.backendStdenv.mkDerivation {
     "-DGGML_FMA=ON"
     "-DGGML_F16C=ON"
     "-DGGML_BMI2=ON"
-    "-DGGML_AVX512=ON"
+    "-DGGML_AVX512=OFF"
   ];
 
   env = {
