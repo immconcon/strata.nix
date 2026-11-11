@@ -59,10 +59,16 @@ cudaPackages.backendStdenv.mkDerivation {
 
   installPhase = ''
     runHook preInstall
-    bin=$(find "$NIX_BUILD_TOP" -maxdepth 4 -type f -name strata | head -1)
-    dev=$(find "$NIX_BUILD_TOP" -maxdepth 4 -type f -name strata-device | head -1)
+    pick_elf() {
+      find "$NIX_BUILD_TOP" -maxdepth 6 -type f -name "$1" | while read -r f; do
+        if [ "$(head -c4 "$f" | tail -c3)" = "ELF" ]; then echo "$f"; break; fi
+      done
+    }
+    bin=$(pick_elf strata)
+    dev=$(pick_elf strata-device)
     if [[ -z "$bin" ]]; then
-      echo "strata binary not found under $NIX_BUILD_TOP" >&2
+      echo "no ELF 'strata' binary found under $NIX_BUILD_TOP; executables present:" >&2
+      find "$NIX_BUILD_TOP" -type f -perm -u+x -newer "$NIX_BUILD_TOP" 2>/dev/null | head -40 >&2
       exit 1
     fi
     install -Dm755 "$bin" $out/bin/strata
