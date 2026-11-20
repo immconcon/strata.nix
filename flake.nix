@@ -24,7 +24,7 @@
       version = "0.0.0.0";
 
       ggmlPin = builtins.head (builtins.match "([0-9a-f]+).*"
-        (builtins.readFile (strata + "/third_party/ggml/VERSION.txt")));
+        (builtins.readFile (strata + "/engine/third_party/ggml/VERSION.txt")));
 
       pinChecked =
         if (llama-pinned.rev or "") == ggmlPin then true

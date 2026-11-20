@@ -20,6 +20,7 @@ cudaPackages.backendStdenv.mkDerivation {
   inherit version;
   inherit src;
   strictDeps = true;
+  cmakeDir = "../engine";
 
   nativeBuildInputs = [
     cmake

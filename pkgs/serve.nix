@@ -53,7 +53,7 @@ stdenvNoCC.mkDerivation {
     chmod -R u+w $out/share/strata
     install -Dm644 ${./prefetch.py} $out/share/strata/prefetch.py
     makeWrapper ${py}/bin/python $out/bin/strata-serve \
-      --add-flags "$out/share/strata/serve/server.py"
+      --add-flags "$out/share/strata/terminal/serve/server.py"
     makeWrapper ${py}/bin/python $out/bin/strata-chat \
       --add-flags "$out/share/strata/chat.py"
     makeWrapper ${py}/bin/python $out/bin/strata-prefetch \
